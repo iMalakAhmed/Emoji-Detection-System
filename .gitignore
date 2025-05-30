@@ -1,0 +1,47 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Model files
+*.hdf5
+*.pb
+*.tflite
+*.onnx
+
+# Dataset folders (optional - comment out if you want to track dataset)
+dataset/
+data/
+train/
+test/
+FER-2013/
+
+# Emoji images (optional - comment out if you want to track them)
+emojis/
+*.zip
+
+# Logs and checkpoints
+*.log
+*.ckpt
+*.bak
+logs/
+checkpoints/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# VSCode & PyCharm
+.vscode/
+.idea/
+
+# Colab artifacts
+*.nbconvert.ipynb
