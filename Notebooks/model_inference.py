@@ -2,10 +2,8 @@ import cv2
 import numpy as np
 from tensorflow.keras.models import load_model
 
-# Load the trained model
 model = load_model("emotion_detection_model.h5")
 
-# Emotion labels and emojis
 emotion_labels = ['Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral']
 label_to_emoji = {
     'Angry': '😠',
@@ -17,7 +15,6 @@ label_to_emoji = {
     'Neutral': '😐'
 }
 
-# Preprocess image for prediction
 def preprocess_image(image_path):
     img = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
     if img is None:
@@ -28,7 +25,6 @@ def preprocess_image(image_path):
     img_input = img_normalized.reshape(1, 48, 48, 1)
     return img_input, img_resized
 
-# Predict and print emoji
 def predict_emotion_with_emoji(image_path):
     input_tensor, img_display = preprocess_image(image_path)
     predictions = model.predict(input_tensor)
@@ -37,11 +33,10 @@ def predict_emotion_with_emoji(image_path):
     emoji = label_to_emoji[label]
     confidence = predictions[0][emotion_idx]
 
-    print(f"🧠 Predicted Emotion: {label}")
-    print(f"😄 Emoji Output: {emoji}")
-    print(f"🔍 Confidence: {confidence:.2f}")
+    print(f" Predicted Emotion: {label}")
+    print(f" Emoji Output: {emoji}")
+    print(f"Confidence: {confidence:.2f}")
 
-    # Show the image with label and emoji
     display_img = cv2.cvtColor(img_display, cv2.COLOR_GRAY2BGR)
     cv2.putText(display_img, f"{emoji} {label}", (2, 45),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2)
@@ -49,7 +44,6 @@ def predict_emotion_with_emoji(image_path):
     cv2.waitKey(0)
     cv2.destroyAllWindows()
 
-# 🔽 Usage
 if __name__ == "__main__":
     image_path = r"C:\Users\moham\Documents\GitHub\Emoji-Detection-System\FER-2013\train\surprise\Training_163503.jpg"  # ← replace with your own image
     predict_emotion_with_emoji(image_path)
